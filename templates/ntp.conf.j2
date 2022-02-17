@@ -1,0 +1,16 @@
+{{ ansible_managed | comment }}
+
+{% for server in ntp_servers %}
+pool {{ server }}
+{% endfor %}
+{{ ntp_conf_misc_commands | join('\n') }}
+
+restrict default {{ ntp_server_flags | join(' ') }}
+
+restrict -4 127.0.0.1
+restrict -6 ::1
+
+driftfile {{ ntp_drift_file }} 
+{% if ntp_log_file %}
+logfile {{ ntp_log_file }}
+{% endif %}

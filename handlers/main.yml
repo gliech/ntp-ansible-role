@@ -1,0 +1,7 @@
+---
+- name: Restart ntp
+  ansible.builtin.service:
+    name: "{{ ntp_daemon }}"
+    state: restarted
+  listen: restart_ntp
+  become: yes

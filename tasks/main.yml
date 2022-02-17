@@ -1,0 +1,21 @@
+---
+- name: Install ntp
+  ansible.builtin.package:
+    name: "{{ ntp_package }}"
+    state: present
+  become: yes
+
+- name: Start ntp service
+  ansible.builtin.service:
+    name: "{{ ntp_daemon }}"
+    enabled: yes
+  become: yes
+  notify: restart_ntp
+
+- name: Create ntp config file
+  ansible.builtin.template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+    mode: 0644
+  become: yes
+  notify: restart_ntp

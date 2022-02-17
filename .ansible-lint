@@ -1,0 +1,5 @@
+---
+exclude_paths:
+  - __pypackages__/
+  - node_modules/
+  - vagrant/
