@@ -14,7 +14,7 @@ platforms:
   - name: mol-ntp-arch
     image: gliech/docker-archlinux-ansible:branch-master
     pre_build_image: true
-    privileged: false
+    privileged: true
     override_command: false
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
